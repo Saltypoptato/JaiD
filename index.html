@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JaiD - Accessible Pastel Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Thicker custom scrollbar for better visibility */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #e0f2fe; border-radius: 10px; } /* sky-100 */
+        ::-webkit-scrollbar-thumb { background: #fde047; border-radius: 10px; } /* yellow-300 */
+        ::-webkit-scrollbar-thumb:hover { background: #facc15; } /* yellow-400 */
+        
+        /* Smooth transitions */
+        .view { transition: opacity 0.3s ease-in-out; }
+    </style>
+</head>
+<!-- Global Background: Pastel Blue -->
+<body class="bg-sky-100 text-slate-800 font-sans min-h-screen flex flex-col text-lg">
+
+    <!-- APP HEADER -->
+    <header id="mainHeader" class="bg-white/80 backdrop-blur-md border-b-4 border-sky-200 py-4 px-6 sticky top-0 z-40 flex justify-between items-center shadow-md hidden">
+        <div class="flex items-center gap-4">
+            <div class="bg-yellow-300 p-3 rounded-2xl text-slate-800 shadow-md border-2 border-yellow-400">
+                <i data-lucide="heart-handshake" class="w-8 h-8"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-black tracking-tight text-slate-800">JaiD</h1>
+            </div>
+        </div>
+        <button id="profileBtn" onclick="switchView('profileView')" class="hidden flex items-center justify-center w-14 h-14 rounded-full bg-yellow-100 hover:bg-yellow-200 border-2 border-yellow-300 text-yellow-700 transition shadow-md">
+            <i data-lucide="user" class="w-7 h-7"></i>
+        </button>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 max-w-lg w-full mx-auto p-4 flex flex-col justify-center">
+
+        <!-- 0. LANDING SPLASH SCREEN -->
+        <div id="landingView" class="view space-y-10 py-10 flex flex-col items-center justify-center text-center h-full">
+            <div class="bg-yellow-300 p-8 rounded-full text-slate-800 shadow-xl shadow-yellow-200 border-4 border-yellow-400">
+                <i data-lucide="heart-handshake" class="w-24 h-24"></i>
+            </div>
+            <div>
+                <h1 class="text-6xl font-black text-slate-800 tracking-tight mb-4">JaiD</h1>
+                <p class="text-xl text-slate-600 font-bold px-4 leading-relaxed">
+                    Your safe haven for mental well-being, mood tracking, and instant peer support.
+                </p>
+            </div>
+            <div class="w-full space-y-4 px-4 mt-8">
+                <!-- Sign Up First -->
+                <button onclick="switchView('signUpView')" class="w-full bg-yellow-300 hover:bg-yellow-400 text-slate-800 font-black py-5 rounded-2xl transition text-2xl shadow-lg shadow-yellow-200 border-b-4 border-yellow-500">
+                    Sign Up
+                </button>
+                <!-- Log In Second -->
+                <button onclick="switchView('loginView')" class="w-full bg-white hover:bg-slate-50 text-slate-800 font-black py-5 rounded-2xl transition text-2xl shadow-lg border-b-4 border-slate-200">
+                    Log In
+                </button>
+            </div>
+        </div>
+
+        <!-- 1A. LOG IN PAGE -->
+        <div id="loginView" class="view space-y-6 hidden">
+            <button onclick="switchView('landingView')" class="text-lg font-bold text-slate-600 flex items-center gap-2 mb-4 hover:underline">
+                <i data-lucide="arrow-left" class="w-6 h-6"></i> Go Back
+            </button>
+            
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-sky-200 border-4 border-sky-200 space-y-6">
+                <h3 class="text-3xl font-black text-slate-800 text-center mb-6">Welcome Back</h3>
+                
+                <div>
+                    <label class="block text-lg font-bold text-slate-700 mb-2">Username</label>
+                    <input type="text" class="w-full px-5 py-4 rounded-2xl bg-sky-50 border-2 border-sky-200 focus:border-sky-400 focus:ring-4 focus:ring-sky-100 text-xl text-slate-800" placeholder="Enter username">
+                </div>
+                <div>
+                    <label class="block text-lg font-bold text-slate-700 mb-2">Password</label>
+                    <input type="password" class="w-full px-5 py-4 rounded-2xl bg-sky-50 border-2 border-sky-200 focus:border-sky-400 focus:ring-4 focus:ring-sky-100 text-xl text-slate-800" placeholder="••••••••">
+                </div>
+                
+                <button onclick="simulateLogin()" class="w-full bg-yellow-300 hover:bg-yellow-400 text-slate-800 font-bold py-4 rounded-2xl transition text-xl shadow-md border-b-4 border-yellow-500 mt-4">
+                    Log In
+                </button>
+                
+                <div class="text-center text-lg text-slate-400 font-bold my-4">OR</div>
+                
+                <button onclick="simulateGoogleLogin()" class="w-full bg-white text-slate-700 font-bold py-4 px-4 rounded-2xl border-4 border-slate-100 hover:border-slate-300 transition text-xl flex items-center justify-center gap-3">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24">
+                        <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.137 4.114A5.772 5.772 0 0 1 8.2 12.74a5.772 5.772 0 0 1 5.79-5.775c1.49 0 2.852.546 3.906 1.444l3.075-3.075C19.13 3.693 16.73 2.4 13.99 2.4c-5.3 0-9.6 4.3-9.6 9.6s4.3 9.6 9.6 9.6c5.53 0 9.17-3.89 9.17-9.36 0-.63-.06-1.1-.18-1.555H12.24z"/>
+                    </svg>
+                    Sign in with Google
+                </button>
+            </div>
+        </div>
+
+        <!-- 1B. SIGN UP PAGE -->
+        <div id="signUpView" class="view space-y-6 hidden">
+            <button onclick="switchView('landingView')" class="text-lg font-bold text-slate-600 flex items-center gap-2 mb-4 hover:underline">
+                <i data-lucide="arrow-left" class="w-6 h-6"></i> Go Back
+            </button>
+
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-sky-200 border-4 border-sky-200 space-y-6">
+                <h3 class="text-3xl font-black text-slate-800 text-center mb-2">Create Account</h3>
+                <p class="text-center text-lg text-slate-500 mb-6">Let's set up your profile.</p>
+
+                <div class="max-h-[60vh] overflow-y-auto space-y-6 pr-4 pb-4">
+                    <!-- Account Info -->
+                    <div class="bg-yellow-50 p-4 rounded-2xl border-2 border-yellow-200">
+                        <label class="block text-xl font-black text-yellow-600 mb-4">1. Account Login</label>
+                        <input id="regUsername" type="text" class="w-full px-5 py-4 rounded-xl bg-white border-2 border-yellow-200 focus:border-yellow-400 text-lg mb-4" placeholder="Username">
+                        <input id="regPassword" type="password" class="w-full px-5 py-4 rounded-xl bg-white border-2 border-yellow-200 focus:border-yellow-400 text-lg" placeholder="Password">
+                    </div>
+                    
+                    <!-- Personal Info -->
+                    <div class="bg-sky-50 p-4 rounded-2xl border-2 border-sky-200">
+                        <label class="block text-xl font-black text-sky-600 mb-4">2. Personal Details</label>
+                        <input id="regFullName" type="text" class="w-full px-5 py-4 rounded-xl bg-white border-2 border-sky-200 focus:border-sky-400 text-lg mb-4" placeholder="Full Name">
+                        <input id="regPhone" type="tel" class="w-full px-5 py-4 rounded-xl bg-white border-2 border-sky-200 focus:border-sky-400 text-lg mb-4" placeholder="Phone Number">
+                        <input id="regID" type="text" class="w-full px-5 py-4 rounded-xl bg-white border-2 border-sky-200 focus:border-sky-400 text-lg mb-4" placeholder="National/Gov ID">
+                        
+                        <label class="block text-sm font-bold text-slate-500 mb-1 ml-1">Date of Birth</label>
+                        <input id="regDOB" type="date" class="w-full px-5 py-4 rounded-xl bg-white border-2 border-sky-200 focus:border-sky-400 text-lg mb-4">
+                        
+                        <select id="regGender" class="w-full px-5 py-4 rounded-xl bg-white border-2 border-sky-200 focus:border-sky-400 text-lg mb-4">
+                            <option value="" disabled selected>Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Non-binary">Non-binary</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <input id="regOccupation" type="text" class="w-full px-5 py-4 rounded-xl bg-white border-2 border-sky-200 focus:border-sky-400 text-lg" placeholder="Occupation">
+                    </div>
+                    
+                    <!-- Medical Info -->
+                    <div class="bg-pink-50 p-4 rounded-2xl border-2 border-pink-200">
+                        <label class="block text-xl font-black text-pink-500 mb-4">3. Medical Context</label>
+                        <input id="regMedAllergies" type="text" class="w-full px-5 py-4 rounded-xl bg-white border-2 border-pink-200 focus:border-pink-400 text-lg mb-4" placeholder="Medicine Allergies">
+                        <input id="regFoodAllergies" type="text" class="w-full px-5 py-4 rounded-xl bg-white border-2 border-pink-200 focus:border-pink-400 text-lg mb-4" placeholder="Food Allergies">
+                        <input id="regIllnesses" type="text" class="w-full px-5 py-4 rounded-xl bg-white border-2 border-pink-200 focus:border-pink-400 text-lg" placeholder="Chronic Illnesses">
+                    </div>
+                </div>
+
+                <button onclick="handleRegister()" class="w-full bg-yellow-300 hover:bg-yellow-400 text-slate-800 font-bold py-5 rounded-2xl transition text-2xl shadow-lg border-b-4 border-yellow-500 mt-4">
+                    Register Now
+                </button>
+            </div>
+        </div>
+
+        <!-- 2. TERMS OF SERVICE -->
+        <div id="tosView" class="view space-y-6 hidden">
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-sky-200 border-4 border-sky-200 space-y-6">
+                <div class="text-center">
+                    <div class="bg-yellow-200 text-yellow-700 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner border-4 border-white">
+                        <i data-lucide="shield-check" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-3xl font-black text-slate-800 mb-2">Terms of Service</h3>
+                </div>
+                <div class="bg-sky-50 p-6 rounded-2xl text-lg text-slate-700 h-64 overflow-y-auto space-y-6 border-2 border-sky-200">
+                    <div>
+                        <p class="font-black text-pink-500 text-xl mb-2">1. Data Privacy</p>
+                        <p>Your medical and personal data is collected solely to provide better context for real peer helpers and AI processing. It is secured locally.</p>
+                    </div>
+                    <div>
+                        <p class="font-black text-pink-500 text-xl mb-2">2. Emergency Clause</p>
+                        <p>JaiD is a safe space, but not a replacement for emergency medical services. If you are in danger, contact local authorities immediately.</p>
+                    </div>
+                </div>
+                <button onclick="acceptTos()" class="w-full bg-yellow-300 hover:bg-yellow-400 text-slate-800 font-bold py-5 rounded-2xl transition text-2xl shadow-lg border-b-4 border-yellow-500">
+                    I Agree & Accept
+                </button>
+            </div>
+        </div>
+
+        <!-- 3. MAIN DASHBOARD (Pastel Pink) -->
+        <div id="dashboardView" class="view hidden mt-4">
+            <div class="bg-pink-100 p-8 rounded-[40px] shadow-xl border-4 border-pink-200 space-y-8">
+                <h2 class="text-3xl font-black text-slate-800 px-2 text-center">How can we help?</h2>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <!-- Function Buttons (Pastel Yellow) -->
+                    <button onclick="switchView('moodEmojiView')" class="p-6 bg-yellow-100 rounded-3xl shadow-md border-4 border-yellow-200 hover:border-yellow-400 transition text-left flex flex-col justify-between h-56">
+                        <div class="bg-yellow-200 text-yellow-700 p-4 rounded-2xl w-fit">
+                            <i data-lucide="smile" class="w-10 h-10"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-black text-slate-800 text-xl">Quick Mood</h4>
+                            <p class="text-base text-slate-600 mt-1 font-medium">Emoji Check-in</p>
+                        </div>
+                    </button>
+
+                    <button onclick="switchView('aiVentView')" class="p-6 bg-yellow-100 rounded-3xl shadow-md border-4 border-yellow-200 hover:border-yellow-400 transition text-left flex flex-col justify-between h-56">
+                        <div class="bg-yellow-200 text-yellow-700 p-4 rounded-2xl w-fit">
+                            <i data-lucide="sparkles" class="w-10 h-10"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-black text-slate-800 text-xl">AI Vent</h4>
+                            <p class="text-base text-slate-600 mt-1 font-medium">Safe Space</p>
+                        </div>
+                    </button>
+
+                    <button onclick="switchView('peerView')" class="p-6 bg-yellow-100 rounded-3xl shadow-md border-4 border-yellow-200 hover:border-yellow-400 transition text-left flex flex-col justify-between h-56">
+                        <div class="bg-yellow-200 text-yellow-700 p-4 rounded-2xl w-fit">
+                            <i data-lucide="users" class="w-10 h-10"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-black text-slate-800 text-xl">Connect</h4>
+                            <p class="text-base text-slate-600 mt-1 font-medium">Real Person</p>
+                        </div>
+                    </button>
+
+                    <button onclick="switchView('trackerFormView')" class="p-6 bg-yellow-100 rounded-3xl shadow-md border-4 border-yellow-200 hover:border-yellow-400 transition text-left flex flex-col justify-between h-56">
+                        <div class="bg-yellow-200 text-yellow-700 p-4 rounded-2xl w-fit">
+                            <i data-lucide="clipboard-list" class="w-10 h-10"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-black text-slate-800 text-xl">Tracker</h4>
+                            <p class="text-base text-slate-600 mt-1 font-medium">Guided steps</p>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Historical Log -->
+                <div id="historicalSummary" class="bg-white border-4 border-pink-200 p-6 rounded-3xl shadow-lg hidden">
+                    <h4 class="font-black text-xl flex items-center gap-3 text-slate-800 mb-4">
+                        <i data-lucide="activity" class="w-6 h-6 text-pink-500"></i> Recent Activity
+                    </h4>
+                    <div id="historyTarget" class="text-base space-y-3 text-slate-600 font-medium"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. QUICK MOOD -->
+        <div id="moodEmojiView" class="view space-y-6 hidden">
+            <button onclick="switchView('dashboardView')" class="text-xl font-bold text-slate-600 flex items-center gap-2 mb-2 hover:underline">
+                <i data-lucide="arrow-left" class="w-7 h-7"></i> Back to Home
+            </button>
+            <div class="bg-white p-10 rounded-3xl shadow-xl shadow-yellow-200 border-4 border-yellow-300 text-center space-y-6">
+                <h3 class="font-black text-3xl text-slate-800">How are you feeling?</h3>
+                <p class="text-xl text-slate-500 font-medium">Tap the emoji that fits best.</p>
+                <div class="flex flex-wrap justify-center gap-6 py-8 text-6xl">
+                    <button onclick="selectQuickEmoji('🤩', 'Amazing')" class="hover:scale-110 transition-all">🤩</button>
+                    <button onclick="selectQuickEmoji('😊', 'Good')" class="hover:scale-110 transition-all">😊</button>
+                    <button onclick="selectQuickEmoji('😐', 'Okay')" class="hover:scale-110 transition-all">😐</button>
+                    <button onclick="selectQuickEmoji('😔', 'Down')" class="hover:scale-110 transition-all">😔</button>
+                    <button onclick="selectQuickEmoji('😫', 'Overwhelmed')" class="hover:scale-110 transition-all">😫</button>
+                </div>
+                <div id="emojiStatus" class="text-2xl text-yellow-700 font-black min-h-[40px] bg-yellow-100 p-4 rounded-xl border-4 border-yellow-300 hidden"></div>
+            </div>
+        </div>
+
+        <!-- 5. AI VENT (Pastel Yellow Chats) -->
+        <div id="aiVentView" class="view space-y-6 hidden">
+            <button onclick="switchView('dashboardView')" class="text-xl font-bold text-slate-600 flex items-center gap-2 mb-2 hover:underline">
+                <i data-lucide="arrow-left" class="w-7 h-7"></i> Back to Home
+            </button>
+            <div class="bg-white p-6 rounded-3xl shadow-xl shadow-yellow-200 border-4 border-yellow-300 h-[600px] flex flex-col">
+                <div class="flex items-center gap-3 mb-4 pb-4 border-b-4 border-yellow-100">
+                    <div class="bg-yellow-200 p-3 rounded-xl text-yellow-700"><i data-lucide="bot" class="w-8 h-8"></i></div>
+                    <span class="font-black text-2xl text-slate-800">AI Companion</span>
+                </div>
+                
+                <div id="chatBox" class="flex-1 overflow-y-auto space-y-6 p-2 text-lg pr-4">
+                    <div class="bg-yellow-50 text-slate-800 p-5 rounded-2xl rounded-tl-sm max-w-[85%] border-2 border-yellow-300 font-medium">
+                        Hey there. I'm here to listen. You can tell me anything that's on your mind.
+                    </div>
+                </div>
+                
+                <!-- Follow Up Block -->
+                <div id="aiFollowUp" class="hidden p-5 bg-sky-50 border-4 border-sky-200 rounded-2xl mb-4 flex-col gap-4 text-xl text-slate-800 shadow-md mt-4 text-center font-bold">
+                    <span>Did venting help you feel better?</span>
+                    <div class="flex gap-4 justify-center">
+                        <button onclick="aiResponseReaction('Yes')" class="bg-yellow-300 text-slate-800 px-8 py-3 rounded-xl hover:bg-yellow-400 shadow-md border-b-4 border-yellow-500 font-black">Yes</button>
+                        <button onclick="aiResponseReaction('No')" class="bg-pink-300 text-slate-800 px-8 py-3 rounded-xl hover:bg-pink-400 shadow-md border-b-4 border-pink-500 font-black">No</button>
+                    </div>
+                </div>
+                
+                <div class="flex gap-3 mt-4">
+                    <input id="ventInput" type="text" class="flex-1 px-5 py-4 bg-slate-50 border-4 border-yellow-200 rounded-2xl focus:border-yellow-400 text-xl" placeholder="Type here...">
+                    <button onclick="sendVent()" class="bg-yellow-300 hover:bg-yellow-400 text-slate-800 p-4 rounded-2xl transition shadow-md border-b-4 border-yellow-500">
+                        <i data-lucide="send" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. PEER CONNECT (Pastel Yellow Chats) -->
+        <div id="peerView" class="view space-y-6 hidden">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-2">
+                <button onclick="switchView('dashboardView')" class="text-xl font-bold text-slate-600 flex items-center gap-2 hover:underline">
+                    <i data-lucide="arrow-left" class="w-7 h-7"></i> Back to Home
+                </button>
+                <!-- Large Toggle (Yellow Theme) -->
+                <div class="flex bg-yellow-50 p-2 rounded-2xl shadow-inner border-4 border-yellow-200 w-full sm:w-auto">
+                    <button onclick="togglePeerMode('chat')" id="peerTabChat" class="flex-1 px-6 py-2 rounded-xl text-lg font-black bg-yellow-300 text-slate-800 shadow-md transition">Chat</button>
+                    <button onclick="togglePeerMode('call')" id="peerTabCall" class="flex-1 px-6 py-2 rounded-xl text-lg font-black text-yellow-700 hover:bg-yellow-100 transition">Call</button>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl shadow-xl shadow-yellow-200 border-4 border-yellow-300 h-[600px] flex flex-col relative">
+                
+                <!-- Chat Mode -->
+                <div id="peerChatMode" class="flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4 pb-4 border-b-4 border-yellow-100">
+                        <div class="bg-yellow-200 p-3 rounded-xl text-yellow-700"><i data-lucide="user-check" class="w-8 h-8"></i></div>
+                        <span class="font-black text-2xl text-slate-800">Live Volunteer</span>
+                    </div>
+                    <div id="peerChatBox" class="flex-1 overflow-y-auto space-y-6 p-2 text-lg pr-4">
+                        <div class="bg-yellow-50 text-slate-800 p-5 rounded-2xl rounded-tl-sm max-w-[85%] border-2 border-yellow-300 font-medium">
+                            Hi, I'm connected. I have your profile context. How can I support you today?
+                        </div>
+                    </div>
+                    <div class="flex gap-3 mt-4">
+                        <input id="peerInput" type="text" class="flex-1 px-5 py-4 bg-slate-50 border-4 border-yellow-200 rounded-2xl focus:border-yellow-400 text-xl" placeholder="Message volunteer...">
+                        <button onclick="sendPeerMsg()" class="bg-yellow-300 hover:bg-yellow-400 text-slate-800 p-4 rounded-2xl transition shadow-md border-b-4 border-yellow-500">
+                            <i data-lucide="send" class="w-8 h-8"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Call Mode -->
+                <div id="peerCallMode" class="hidden flex-col h-full justify-center items-center text-center space-y-10">
+                    <div>
+                        <h3 class="font-black text-3xl text-slate-800">Voice Call</h3>
+                        <p class="text-xl text-slate-500 mt-4 px-4 font-medium">Tap the large button to start an anonymous voice call with a trained peer listener.</p>
+                    </div>
+                    <div class="py-8">
+                        <button onclick="alert('Calling Volunteer... (Audio Prototype)')" class="w-40 h-40 mx-auto rounded-full bg-gradient-to-tr from-yellow-300 to-yellow-500 text-white flex items-center justify-center transition-all shadow-[0_0_60px_rgba(253,224,71,0.6)] hover:scale-105 animate-pulse border-8 border-white">
+                            <i data-lucide="phone" class="w-16 h-16"></i>
+                        </button>
+                    </div>
+                    <span class="inline-block bg-slate-100 px-6 py-3 rounded-full text-lg text-slate-600 font-bold border-2 border-slate-200">Status: Ready to connect</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. TRACKER -->
+        <div id="trackerFormView" class="view space-y-6 hidden">
+            <button onclick="switchView('dashboardView')" class="text-xl font-bold text-slate-600 flex items-center gap-2 mb-2 hover:underline">
+                <i data-lucide="arrow-left" class="w-7 h-7"></i> Back to Home
+            </button>
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-yellow-200 border-4 border-yellow-300 space-y-8">
+                <h3 class="font-black text-3xl text-slate-800 border-b-4 border-yellow-100 pb-4">Daily Check-in</h3>
+                
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-xl font-bold text-slate-700 mb-3">1. How are you feeling today?</label>
+                        <input id="q1" type="text" class="w-full px-5 py-4 bg-yellow-50 border-4 border-yellow-200 rounded-2xl text-xl focus:border-yellow-400" placeholder="e.g., A bit anxious">
+                    </div>
+                    <div>
+                        <label class="block text-xl font-bold text-slate-700 mb-3">2. What's bothering you?</label>
+                        <input id="q2" type="text" class="w-full px-5 py-4 bg-yellow-50 border-4 border-yellow-200 rounded-2xl text-xl focus:border-yellow-400" placeholder="e.g., Work deadlines">
+                    </div>
+                    <div class="pt-4 bg-pink-50 p-6 rounded-2xl border-4 border-pink-200">
+                        <label class="block text-xl font-black text-pink-600 mb-4">3. Save this to your history?</label>
+                        <div class="flex gap-8">
+                            <label class="inline-flex items-center text-xl font-bold text-slate-700 cursor-pointer">
+                                <input type="radio" name="q3" value="Yes" checked class="w-6 h-6 text-pink-500 mr-3"> Yes
+                            </label>
+                            <label class="inline-flex items-center text-xl font-bold text-slate-700 cursor-pointer">
+                                <input type="radio" name="q3" value="No" class="w-6 h-6 text-pink-500 mr-3"> No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="processTrackerResults()" class="w-full bg-yellow-300 hover:bg-yellow-400 text-slate-800 font-bold py-5 rounded-2xl transition text-2xl shadow-lg border-b-4 border-yellow-500 mt-6">
+                    Complete Check-in
+                </button>
+            </div>
+        </div>
+
+        <!-- 8. PROFILE / EDIT -->
+        <div id="profileView" class="view space-y-6 hidden">
+            <button onclick="switchView('dashboardView')" class="text-xl font-bold text-slate-600 flex items-center gap-2 mb-2 hover:underline">
+                <i data-lucide="arrow-left" class="w-7 h-7"></i> Back to Home
+            </button>
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-sky-200 border-4 border-sky-300 space-y-6">
+                <h3 class="font-black text-3xl text-slate-800 border-b-4 border-sky-100 pb-4">Your Profile</h3>
+                
+                <div class="max-h-[55vh] overflow-y-auto space-y-8 pr-4 pb-4">
+                    <!-- Core -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border-4 border-slate-200">
+                        <label class="block text-xl font-black text-slate-600 mb-4">Core Info</label>
+                        <input id="profUsername" type="text" class="w-full px-5 py-4 bg-white border-2 border-slate-300 rounded-xl text-lg mb-4" placeholder="Username">
+                        <input id="profFullName" type="text" class="w-full px-5 py-4 bg-white border-2 border-slate-300 rounded-xl text-lg mb-4" placeholder="Full Name">
+                        <input id="profPhone" type="text" class="w-full px-5 py-4 bg-white border-2 border-slate-300 rounded-xl text-lg mb-4" placeholder="Phone">
+                        <input id="profID" type="text" class="w-full px-5 py-4 bg-white border-2 border-slate-300 rounded-xl text-lg" placeholder="National ID">
+                    </div>
+                    
+                    <!-- Demographics -->
+                    <div class="bg-yellow-50 p-5 rounded-2xl border-4 border-yellow-200">
+                        <label class="block text-xl font-black text-yellow-600 mb-4">Demographics</label>
+                        <input id="profDOB" type="date" class="w-full px-5 py-4 bg-white border-2 border-yellow-300 rounded-xl text-lg mb-4">
+                        <select id="profGender" class="w-full px-5 py-4 bg-white border-2 border-yellow-300 rounded-xl text-lg mb-4">
+                            <option value="" disabled>Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Non-binary">Non-binary</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <input id="profOccupation" type="text" class="w-full px-5 py-4 bg-white border-2 border-yellow-300 rounded-xl text-lg" placeholder="Occupation">
+                    </div>
+
+                    <!-- Medical -->
+                    <div class="bg-pink-50 p-5 rounded-2xl border-4 border-pink-200">
+                        <label class="block text-xl font-black text-pink-600 mb-4">Medical Profile</label>
+                        <input id="profMedAllergies" type="text" class="w-full px-5 py-4 bg-white border-2 border-pink-300 rounded-xl text-lg mb-4" placeholder="Medicine Allergies">
+                        <input id="profFoodAllergies" type="text" class="w-full px-5 py-4 bg-white border-2 border-pink-300 rounded-xl text-lg mb-4" placeholder="Food Allergies">
+                        <input id="profIllnesses" type="text" class="w-full px-5 py-4 bg-white border-2 border-pink-300 rounded-xl text-lg" placeholder="Illnesses">
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 pt-4 border-t-4 border-slate-100">
+                    <button onclick="saveProfile()" class="w-full bg-yellow-300 hover:bg-yellow-400 text-slate-800 font-bold py-5 rounded-2xl transition text-2xl shadow-lg border-b-4 border-yellow-500">
+                        Save Updates
+                    </button>
+                    <button onclick="logout()" class="w-full bg-white border-4 border-slate-200 hover:bg-slate-100 text-slate-600 font-bold py-4 rounded-2xl transition text-xl shadow-sm">
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Profile Data
+        let userProfile = {
+            username: '', fullName: '', phone: '', id: '', dob: '', 
+            gender: '', occupation: '', medAllergies: '', foodAllergies: '', illnesses: ''
+        };
+
+        // UI Management
+        function switchView(viewId) {
+            document.querySelectorAll('.view').forEach(view => {
+                view.classList.add('hidden');
+            });
+            document.getElementById(viewId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Hide main header on landing page, show it everywhere else
+            const header = document.getElementById('mainHeader');
+            if(viewId === 'landingView' || viewId === 'loginView' || viewId === 'signUpView') {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+        }
+
+        // Initialize App on load
+        document.addEventListener('DOMContentLoaded', () => {
+            switchView('landingView');
+        });
+
+        // Registration
+        function handleRegister() {
+            userProfile.username = document.getElementById('regUsername').value || 'new_user';
+            userProfile.fullName = document.getElementById('regFullName').value || 'Anonymous';
+            userProfile.phone = document.getElementById('regPhone').value || 'N/A';
+            userProfile.id = document.getElementById('regID').value || '';
+            userProfile.dob = document.getElementById('regDOB').value || '';
+            userProfile.gender = document.getElementById('regGender').value || '';
+            userProfile.occupation = document.getElementById('regOccupation').value || '';
+            userProfile.medAllergies = document.getElementById('regMedAllergies').value || 'None';
+            userProfile.foodAllergies = document.getElementById('regFoodAllergies').value || 'None';
+            userProfile.illnesses = document.getElementById('regIllnesses').value || 'None';
+            
+            syncProfileToInputs();
+            switchView('tosView');
+        }
+
+        function simulateGoogleLogin() {
+            userProfile.username = 'GoogleUser';
+            userProfile.fullName = 'Google Account';
+            syncProfileToInputs();
+            switchView('tosView');
+        }
+
+        function simulateLogin() {
+            activateUserSession();
+        }
+
+        function acceptTos() {
+            activateUserSession();
+        }
+
+        function activateUserSession() {
+            document.getElementById('profileBtn').classList.remove('hidden');
+            switchView('dashboardView');
+        }
+
+        // Quick Mood
+        function selectQuickEmoji(emoji, label) {
+            const status = document.getElementById('emojiStatus');
+            status.innerText = `Logged: ${emoji} ${label}`;
+            status.classList.remove('hidden');
+            appendLogToDashboard(`Quick Mood: ${emoji} ${label}`);
+        }
+
+        // AI Vent
+        function sendVent() {
+            const val = document.getElementById('ventInput').value;
+            if(!val.trim()) return;
+
+            const chat = document.getElementById('chatBox');
+            
+            const userBubble = document.createElement('div');
+            userBubble.className = "bg-yellow-300 text-slate-800 p-5 rounded-2xl rounded-tr-sm max-w-[85%] ml-auto text-right shadow-sm font-medium border-2 border-yellow-400";
+            userBubble.innerText = val;
+            chat.appendChild(userBubble);
+            
+            document.getElementById('ventInput').value = '';
+            chat.scrollTop = chat.scrollHeight;
+
+            setTimeout(() => {
+                const aiBubble = document.createElement('div');
+                aiBubble.className = "bg-yellow-50 text-slate-800 p-5 rounded-2xl rounded-tl-sm max-w-[85%] border-2 border-yellow-200 font-medium";
+                aiBubble.innerText = "I hear you. Thank you for sharing that with me.";
+                chat.appendChild(aiBubble);
+                chat.scrollTop = chat.scrollHeight;
+                
+                document.getElementById('aiFollowUp').classList.remove('hidden');
+            }, 1000);
+        }
+
+        function aiResponseReaction(reactionText) {
+            document.getElementById('aiFollowUp').classList.add('hidden');
+            const chat = document.getElementById('chatBox');
+            const noteBubble = document.createElement('div');
+            noteBubble.className = "text-center text-base text-slate-400 italic my-4 font-bold";
+            noteBubble.innerText = `You noted feeling better: ${reactionText}`;
+            chat.appendChild(noteBubble);
+            chat.scrollTop = chat.scrollHeight;
+            appendLogToDashboard(`Venting Session completed. Helped: ${reactionText}`);
+        }
+
+        // Peer Mode Switch
+        function togglePeerMode(mode) {
+            const chatMode = document.getElementById('peerChatMode');
+            const callMode = document.getElementById('peerCallMode');
+            const tabChat = document.getElementById('peerTabChat');
+            const tabCall = document.getElementById('peerTabCall');
+
+            if (mode === 'chat') {
+                chatMode.classList.remove('hidden'); chatMode.classList.add('flex');
+                callMode.classList.add('hidden'); callMode.classList.remove('flex');
+                
+                tabChat.className = "flex-1 px-6 py-2 rounded-xl text-lg font-black bg-yellow-300 text-slate-800 shadow-md transition";
+                tabCall.className = "flex-1 px-6 py-2 rounded-xl text-lg font-black text-yellow-700 hover:bg-yellow-100 transition";
+            } else {
+                callMode.classList.remove('hidden'); callMode.classList.add('flex');
+                chatMode.classList.add('hidden'); chatMode.classList.remove('flex');
+
+                tabCall.className = "flex-1 px-6 py-2 rounded-xl text-lg font-black bg-yellow-300 text-slate-800 shadow-md transition";
+                tabChat.className = "flex-1 px-6 py-2 rounded-xl text-lg font-black text-yellow-700 hover:bg-yellow-100 transition";
+            }
+        }
+
+        // Peer Chat
+        function sendPeerMsg() {
+            const val = document.getElementById('peerInput').value;
+            if(!val.trim()) return;
+
+            const chat = document.getElementById('peerChatBox');
+            const userBubble = document.createElement('div');
+            userBubble.className = "bg-yellow-300 text-slate-800 p-5 rounded-2xl rounded-tr-sm max-w-[85%] ml-auto text-right shadow-sm font-medium border-2 border-yellow-400";
+            userBubble.innerText = val;
+            chat.appendChild(userBubble);
+            
+            document.getElementById('peerInput').value = '';
+            chat.scrollTop = chat.scrollHeight;
+
+            setTimeout(() => {
+                const peerBubble = document.createElement('div');
+                peerBubble.className = "bg-yellow-50 text-slate-800 p-5 rounded-2xl rounded-tl-sm max-w-[85%] border-2 border-yellow-200 font-medium";
+                peerBubble.innerText = "That sounds tough. Do you want to talk more about how that made you feel?";
+                chat.appendChild(peerBubble);
+                chat.scrollTop = chat.scrollHeight;
+            }, 1500);
+        }
+
+        // Tracker
+        function processTrackerResults() {
+            const q1Value = document.getElementById('q1').value || 'Empty';
+            const q2Value = document.getElementById('q2').value || 'Empty';
+            const q3Value = document.querySelector('input[name="q3"]:checked').value;
+
+            appendLogToDashboard(`Tracker -> Mood: "${q1Value}" | Stress: "${q2Value}"`);
+            document.getElementById('q1').value = '';
+            document.getElementById('q2').value = '';
+            switchView('dashboardView');
+        }
+
+        // Logs
+        function appendLogToDashboard(message) {
+            const container = document.getElementById('historicalSummary');
+            const target = document.getElementById('historyTarget');
+            container.classList.remove('hidden');
+
+            const item = document.createElement('div');
+            item.className = "bg-white p-4 rounded-xl border-2 border-pink-200 text-slate-700 font-bold";
+            item.innerText = message;
+            target.insertBefore(item, target.firstChild);
+        }
+
+        // Profile Sync
+        function syncProfileToInputs() {
+            document.getElementById('profUsername').value = userProfile.username;
+            document.getElementById('profFullName').value = userProfile.fullName;
+            document.getElementById('profPhone').value = userProfile.phone;
+            document.getElementById('profID').value = userProfile.id;
+            document.getElementById('profDOB').value = userProfile.dob;
+            document.getElementById('profGender').value = userProfile.gender;
+            document.getElementById('profOccupation').value = userProfile.occupation;
+            document.getElementById('profMedAllergies').value = userProfile.medAllergies;
+            document.getElementById('profFoodAllergies').value = userProfile.foodAllergies;
+            document.getElementById('profIllnesses').value = userProfile.illnesses;
+        }
+
+        function saveProfile() {
+            userProfile.username = document.getElementById('profUsername').value;
+            userProfile.fullName = document.getElementById('profFullName').value;
+            userProfile.phone = document.getElementById('profPhone').value;
+            userProfile.id = document.getElementById('profID').value;
+            userProfile.dob = document.getElementById('profDOB').value;
+            userProfile.gender = document.getElementById('profGender').value;
+            userProfile.occupation = document.getElementById('profOccupation').value;
+            userProfile.medAllergies = document.getElementById('profMedAllergies').value;
+            userProfile.foodAllergies = document.getElementById('profFoodAllergies').value;
+            userProfile.illnesses = document.getElementById('profIllnesses').value;
+            
+            alert('Profile updated successfully!');
+            switchView('dashboardView');
+        }
+
+        function logout() {
+            document.getElementById('profileBtn').classList.add('hidden');
+            document.getElementById('historicalSummary').classList.add('hidden');
+            document.getElementById('historyTarget').innerHTML = '';
+            switchView('landingView');
+        }
+
+        lucide.createIcons();
+    </script>
+</body>
+</html>
