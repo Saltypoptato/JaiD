@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JaiD - Accessible Pastel Edition</title>
@@ -66,12 +66,12 @@
             <div>
                 <h1 class="text-6xl font-black text-slate-800 tracking-tight mb-4">JaiD</h1>
                 <p class="text-xl text-slate-600 font-bold px-4 leading-relaxed">
-                    พื้นที่ปลอดภัยสำหรับความเป็นอยู่ทางจิตใจและการสนับสนุนจากเพื่อนทันที 💖
+                    พื้นที่อบอุ่นและเป็นตัวเอง ใจดีพร้อมที่จะโอบกอดและรับฟังปัญหาของทุกคน 💖
             
             <div class="relative z-10 w-full px-2">
                 <h1 class="text-5xl sm:text-6xl font-black text-slate-800 tracking-tight mb-3 sm:mb-4 drop-shadow-md">JaiD</h1>
                 <p class="text-lg sm:text-xl text-slate-700 font-bold px-4 leading-relaxed bg-white/70 backdrop-blur-sm py-3 rounded-[2rem] border-[3px] border-white/80 shadow-sm">
-                    พื้นที่ปลอดภัยสำหรับความเป็นอยู่ทางจิตใจและการสนับสนุนจากเพื่อนทันที 💖
+                    พื้นที่อบอุ่นและเป็นตัวเอง ใจดีพร้อมที่จะโอบกอดและรับฟังปัญหาของทุกคน 💖
                 </p>
             </div>
             <div class="w-full space-y-4 px-4 mt-8">
@@ -207,7 +207,6 @@
                     <!-- Medical Info -->
                     <div class="bg-amber-50 p-4 sm:p-6 rounded-[2rem] border-[3px] border-amber-200 shadow-sm">
                         <label class="block text-lg sm:text-xl font-black text-amber-500 mb-2 bg-white w-fit px-3 py-1 rounded-xl border-2 border-amber-100 shadow-sm">3. สุขภาพ 🌻</label>
-                        <p class="text-xs sm:text-sm font-bold text-amber-600 mb-3 ml-2">(ถ้าไม่มี ให้พิมพ์ "ไม่มี")</p>
                         <input id="regMedAllergies" type="text" class="w-full px-4 py-3 rounded-[1rem] bg-white border-[3px] border-amber-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-100 text-base sm:text-lg font-bold mb-3 outline-none transition-all placeholder-amber-300" placeholder="แพ้ยา">
                         <input id="regFoodAllergies" type="text" class="w-full px-4 py-3 rounded-[1rem] bg-white border-[3px] border-amber-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-100 text-base sm:text-lg font-bold mb-3 outline-none transition-all placeholder-amber-300" placeholder="แพ้อาหาร">
                         <input id="regIllnesses" type="text" class="w-full px-4 py-3 rounded-[1rem] bg-white border-[3px] border-amber-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-100 text-base sm:text-lg font-bold outline-none transition-all placeholder-amber-300" placeholder="โรคประจำตัว">
@@ -255,7 +254,7 @@
                     </div>
                 </div>
                 <button onclick="acceptTos()" class="w-full bg-yellow-300 hover:bg-yellow-400 text-slate-800 font-bold py-5 rounded-2xl transition text-2xl shadow-lg border-b-4 border-yellow-500">
-                    Iฉันเห็นด้วยและยอมรับ
+                    ฉันเห็นด้วยและยอมรับ
                 <button onclick="acceptTos()" class="btn-3d w-full bg-sky-400 hover:bg-sky-500 text-white font-black py-3 sm:py-4 rounded-[1.5rem] sm:rounded-[2rem] transition-all text-xl sm:text-2xl shadow-xl border-b-[5px] sm:border-b-[6px] border-sky-600">
                      ฉันยอมรับ! ✨
                 </button>
@@ -265,7 +264,7 @@
         <!-- 3. MAIN DASHBOARD (Pastel Pink) -->
         <div id="dashboardView" class="view hidden mt-4">
             <div class="bg-pink-100 p-8 rounded-[40px] shadow-xl border-4 border-pink-200 space-y-8">
-                <h2 class="text-3xl font-black text-slate-800 px-2 text-center">ให้เราช่วยมั้ย</h2>
+                <h2 class="text-3xl font-black text-slate-800 px-2 text-center">น้องใจดีพร้อมรับฟัง 🤗</h2>
                 
                 <div class="grid grid-cols-2 gap-6">
                     <!-- Function Buttons (Pastel Yellow) -->
@@ -274,7 +273,7 @@
                             <i data-lucide="smile" class="w-10 h-10"></i>
                         </div>
                         <div>
-                            <h4 class="font-black text-slate-800 text-xl">ความรู้สึกตอนนี้</h4>
+                            <h4 class="font-black text-slate-800 text-xl">ขวดโหลเก็บความรู้สึก</h4>
                             <p class="text-base text-slate-600 mt-1 font-medium">บอกความรู้สึกผ่านอิโมจิ</p>
                         </div>
                     </button>
@@ -285,8 +284,8 @@
                 <button onclick="switchView('moodEmojiView')" class="p-4 sm:p-6 bg-amber-100 rounded-[1.5rem] sm:rounded-[2.5rem] shadow-lg border-[4px] sm:border-[6px] border-amber-300 hover:border-amber-400 hover:scale-105 hover:-rotate-3 transition-all text-left flex flex-col justify-between h-44 sm:h-56 border-b-[6px] sm:border-b-[8px]">
                     <div class="bg-amber-200 text-amber-800 p-2 sm:p-3 rounded-[1rem] w-fit shadow-inner"><i data-lucide="smile" class="w-8 h-8 sm:w-10 sm:h-10"></i></div>
                     <div>
-                        <h4 class="font-black text-amber-900 text-xl sm:text-2xl mb-1">อารมณ์</h4>
-                        <p class="text-xs sm:text-sm text-amber-700 font-bold bg-amber-200/50 px-2 py-1 rounded-md w-fit">บันทึกอารมณ์</p>
+                        <h4 class="font-black text-amber-900 text-xl sm:text-2xl mb-1">ขวดโหลเก็บความรู้สึก</h4>
+                        <p class="text-xs sm:text-sm text-amber-700 font-bold bg-amber-200/50 px-2 py-1 rounded-md w-fit">บันทึกความรู้สึก</p>
                     </div>
                 </button>
 
@@ -295,15 +294,15 @@
                             <i data-lucide="sparkles" class="w-10 h-10"></i>
                         </div>
                         <div>
-                            <h4 class="font-black text-slate-800 text-xl">มีอะไรบอกได้นะ</h4>
-                            <p class="text-base text-slate-600 mt-1 font-medium">พื้นที่ปลอดภัย</p>
+                            <h4 class="font-black text-slate-800 text-xl">ซบไหล่ใจดี</h4>
+                            <p class="text-base text-slate-600 mt-1 font-medium">น้องใจดี</p>
                         </div>
                     </button>
                 <button onclick="switchView('aiVentView')" class="p-4 sm:p-6 bg-amber-100 rounded-[1.5rem] sm:rounded-[2.5rem] shadow-lg border-[4px] sm:border-[6px] border-amber-300 hover:border-amber-400 hover:scale-105 hover:rotate-3 transition-all text-left flex flex-col justify-between h-44 sm:h-56 border-b-[6px] sm:border-b-[8px]">
                     <div class="bg-amber-200 text-amber-800 p-2 sm:p-3 rounded-[1rem] w-fit shadow-inner"><i data-lucide="sparkles" class="w-8 h-8 sm:w-10 sm:h-10"></i></div>
                     <div>
-                        <h4 class="font-black text-amber-900 text-xl sm:text-2xl mb-1">มีอะไรบอกได้นะ</h4>
-                        <p class="text-xs sm:text-sm text-amber-700 font-bold bg-amber-200/50 px-2 py-1 rounded-md w-fit">พื้นที่ปลอดภัย</p>
+                        <h4 class="font-black text-amber-900 text-xl sm:text-2xl mb-1">น้องใจดีพร้อมรับฟัง</h4>
+                        <p class="text-xs sm:text-sm text-amber-700 font-bold bg-amber-200/50 px-2 py-1 rounded-md w-fit">น้องใจดี</p>
                     </div>
                 </button>
 
@@ -312,15 +311,15 @@
                             <i data-lucide="users" class="w-10 h-10"></i>
                         </div>
                         <div>
-                            <h4 class="font-black text-slate-800 text-xl">เชื่อมต่อ</h4>
-                            <p class="text-base text-slate-600 mt-1 font-medium">พูดคุยกับ</p>
+                            <h4 class="font-black text-slate-800 text-xl">คลีนิกใจดี</h4>
+                            <p class="text-base text-slate-600 mt-1 font-medium">คิดมากใจพัง เติมพลังใจดี</p>
                         </div>
                     </button>
                 <button onclick="switchView('peerView')" class="p-4 sm:p-6 bg-amber-100 rounded-[1.5rem] sm:rounded-[2.5rem] shadow-lg border-[4px] sm:border-[6px] border-amber-300 hover:border-amber-400 hover:scale-105 hover:-rotate-3 transition-all text-left flex flex-col justify-between h-44 sm:h-56 border-b-[6px] sm:border-b-[8px]">
                     <div class="bg-amber-200 text-amber-800 p-2 sm:p-3 rounded-[1rem] w-fit shadow-inner"><i data-lucide="users" class="w-8 h-8 sm:w-10 sm:h-10"></i></div>
                     <div>
-                        <h4 class="font-black text-amber-900 text-xl sm:text-2xl mb-1">เชื่อมต่อ</h4>
-                        <p class="text-xs sm:text-sm text-amber-700 font-bold bg-amber-200/50 px-2 py-1 rounded-md w-fit">เพื่อน</p>
+                        <h4 class="font-black text-amber-900 text-xl sm:text-2xl mb-1">คลีนิกใจดี</h4>
+                        <p class="text-xs sm:text-sm text-amber-700 font-bold bg-amber-200/50 px-2 py-1 rounded-md w-fit">คิดมากใจพัง เติมพลังใจดี</p>
                     </div>
                 </button>
 
@@ -329,16 +328,16 @@
                             <i data-lucide="clipboard-list" class="w-10 h-10"></i>
                         </div>
                         <div>
-                            <h4 class="font-black text-slate-800 text-xl">ติดตามอารมณ์</h4>
-                            <p class="text-base text-slate-600 mt-1 font-medium">แนวทางที่แนะนำ</p>
+                            <h4 class="font-black text-slate-800 text-xl">กอดใจประจำวัน</h4>
+                            <p class="text-base text-slate-600 mt-1 font-medium">แวะมาเติมพลังใจกันวันละนิด</p>
                         </div>
                     </button>
                 </div>
                 <button onclick="switchView('trackerFormView')" class="p-4 sm:p-6 bg-amber-100 rounded-[1.5rem] sm:rounded-[2.5rem] shadow-lg border-[4px] sm:border-[6px] border-amber-300 hover:border-amber-400 hover:scale-105 hover:rotate-3 transition-all text-left flex flex-col justify-between h-44 sm:h-56 border-b-[6px] sm:border-b-[8px]">
                     <div class="bg-amber-200 text-amber-800 p-2 sm:p-3 rounded-[1rem] w-fit shadow-inner"><i data-lucide="clipboard-list" class="w-8 h-8 sm:w-10 sm:h-10"></i></div>
                     <div>
-                        <h4 class="font-black text-amber-900 text-xl sm:text-2xl mb-1">ติดตามอารมณ์</h4>
-                        <p class="text-xs sm:text-sm text-amber-700 font-bold bg-amber-200/50 px-2 py-1 rounded-md w-fit">แนวทางที่แนะนำ</p>
+                        <h4 class="font-black text-amber-900 text-xl sm:text-2xl mb-1">กอดใจประจำวัน</h4>
+                        <p class="text-xs sm:text-sm text-amber-700 font-bold bg-amber-200/50 px-2 py-1 rounded-md w-fit">แวะมาเติมพลังใจกันวันละนิด</p>
                     </div>
                 </button>
             </div>
@@ -367,7 +366,7 @@
                 <i data-lucide="arrow-left" class="w-6 h-6 sm:w-8 sm:h-8"></i> หน้าหลัก
             </button>
             <div class="bg-white p-10 rounded-3xl shadow-xl shadow-yellow-200 border-4 border-yellow-300 text-center space-y-6">
-                <h3 class="font-black text-3xl text-slate-800">คุณรู้สึกอย่างไร?</h3>
+                <h3 class="font-black text-3xl text-slate-800">วันนี้เป็นไงบ้าง</h3>
                 <p class="text-xl text-slate-500 font-medium">แตะที่อีโมจิที่เพื่อบอกความรู้สึกของคุณ</p>
                 <div class="flex flex-wrap justify-center gap-6 py-8 text-6xl">
                     <button onclick="selectQuickEmoji('🤩', 'Amazing')" class="hover:scale-110 transition-all">🤩</button>
@@ -376,7 +375,7 @@
                     <button onclick="selectQuickEmoji('😔', 'Down')" class="hover:scale-110 transition-all">😔</button>
                     <button onclick="selectQuickEmoji('😫', 'Overwhelmed')" class="hover:scale-110 transition-all">😫</button>
             <div class="bg-white p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] shadow-2xl shadow-sky-200 border-[4px] sm:border-[6px] border-sky-100 text-center space-y-4 sm:space-y-6">
-                <h3 class="font-black text-3xl sm:text-5xl text-slate-800">คุณรู้สึกอย่างไร?</h3>
+                <h3 class="font-black text-3xl sm:text-5xl text-slate-800">คุณรู้สึกอย่างไร</h3>
                 <p class="text-lg sm:text-2xl text-slate-500 font-bold bg-sky-50 px-4 py-2 rounded-2xl inline-block border-[3px] border-sky-100">แตะที่อารมณ์ของคุณ! 👇</p>
                 
                 <div class="flex flex-wrap justify-center gap-4 sm:gap-6 py-6 sm:py-8 text-[3.5rem] sm:text-[5rem]">
@@ -412,24 +411,26 @@
 
                 <div id="chatBox" class="flex-1 overflow-y-auto space-y-6 p-2 text-lg pr-4">
                     <div class="bg-yellow-50 text-slate-800 p-5 rounded-2xl rounded-tl-sm max-w-[85%] border-2 border-yellow-300 font-medium">
-                        สวัสดี ฉันสามารถรับได้นะ เธอสามารถเล่าอะไรที่อยู่ในใจให้ฉันฟังได้หมดเลย
+                        สวัสดี น้องใจดีสามารถรับฟังได้นะ แวะมาเล่าอะไรให้ใจดีฟังได้นะ
                 <div id="chatBox" class="flex-1 overflow-y-auto space-y-4 p-2 text-base sm:text-lg pr-2 sm:pr-4">
                     <div class="bg-amber-50 text-slate-800 p-4 sm:p-5 rounded-[1.5rem] rounded-tl-sm max-w-[85%] border-[3px] border-amber-200 font-bold shadow-sm">
-                        สวัสดี ฉันสามารถรับฟังคุณได้นะ มีอะไรอยากเล่าให้ฟังมั้ย 🌻
+                        สวัสดี คุณมีอะไรในใจรึเปล่า น้องใจดีพร้อมรับฟังคุณเสมอนะ 🌻
                     </div>
                 </div>
 
                 <!-- Follow Up Block -->
                 <div id="aiFollowUp" class="hidden p-5 bg-sky-50 border-4 border-sky-200 rounded-2xl mb-4 flex-col gap-4 text-xl text-slate-800 shadow-md mt-4 text-center font-bold">
-                    <span>เราช่วยให้คุณรู้สึกดีขึ้นไหม? 🥺</span>
+                    <span>น้องใจดีทำให้เธอสบายใจขึ้นไหม</span>
                     <div class="flex gap-4 justify-center">
-                        <button onclick="aiResponseReaction('Yes')" class="bg-yellow-300 text-slate-800 px-8 py-3 rounded-xl hover:bg-yellow-400 shadow-md border-b-4 border-yellow-500 font-black">Yes</button>
-                        <button onclick="aiResponseReaction('No')" class="bg-pink-300 text-slate-800 px-8 py-3 rounded-xl hover:bg-pink-400 shadow-md border-b-4 border-pink-500 font-black">No</button>
+                        <button onclick="aiResponseReaction('Yes')" class="bg-yellow-300 text-slate-800 px-8 py-3 rounded-xl hover:bg-yellow-400 shadow-md border-b-4 border-yellow-500 font-black">ใช่</button>
+                        <button onclick="aiResponseReaction('No')" class="bg-pink-300 text-slate-800 px-8 py-3 rounded-xl hover:bg-pink-400 shadow-md border-b-4 border-pink-500 font-black">ไม่</button>
+                    </div>
+                </div>
                 <div id="aiFollowUp" class="hidden p-4 sm:p-5 bg-yellow-50 border-[4px] border-amber-300 rounded-[1.5rem] mb-2 flex-col gap-3 text-lg sm:text-xl text-slate-800 shadow-lg mt-2 text-center font-black">
-                    <span>เราช่วยให้คุณรู้สึกดีขึ้นไหม? 🥺</span>
+                    <span>น้องใจดีทำให้เธอสบายใจขึ้นไหม</span>
                     <div class="flex gap-2 sm:gap-4 justify-center">
-                        <button onclick="aiResponseReaction('Yes')" class="btn-3d bg-amber-400 text-white px-5 sm:px-8 py-2 sm:py-3 rounded-[1rem] hover:bg-amber-500 shadow-md border-b-[4px] border-amber-600">Yes! 👍</button>
-                        <button onclick="aiResponseReaction('No')" class="btn-3d bg-slate-300 text-slate-700 px-5 sm:px-8 py-2 sm:py-3 rounded-[1rem] hover:bg-slate-400 shadow-md border-b-[4px] border-slate-500">Not really</button>
+                        <button onclick="aiResponseReaction('Yes')" class="btn-3d bg-amber-400 text-white px-5 sm:px-8 py-2 sm:py-3 rounded-[1rem] hover:bg-amber-500 shadow-md border-b-[4px] border-amber-600">ใช่! 👍</button>
+                        <button onclick="aiResponseReaction('No')" class="btn-3d bg-slate-300 text-slate-700 px-5 sm:px-8 py-2 sm:py-3 rounded-[1rem] hover:bg-slate-400 shadow-md border-b-[4px] border-slate-500">ไม่เท่าไหร่</button>
                     </div>
                 </div>
 
@@ -473,17 +474,17 @@
                 <div id="peerChatMode" class="flex flex-col h-full">
                     <div class="flex items-center gap-3 mb-4 pb-4 border-b-4 border-yellow-100">
                         <div class="bg-yellow-200 p-3 rounded-xl text-yellow-700"><i data-lucide="user-check" class="w-8 h-8"></i></div>
-                        <span class="font-black text-2xl text-slate-800">พูดคุยกับเพื่อน</span>
+                        <span class="font-black text-2xl text-slate-800">พูดคุยกับใจดี</span>
                     <div class="flex items-center gap-3 mb-3 pb-3 border-b-[3px] border-amber-100">
                         <div class="bg-amber-100 p-2 sm:p-3 rounded-2xl text-amber-600 shadow-inner"><i data-lucide="user-check" class="w-6 h-6 sm:w-8 sm:h-8"></i></div>
-                        <span class="font-black text-2xl sm:text-3xl text-slate-800">เพื่อน 💛</span>
+                        <span class="font-black text-2xl sm:text-3xl text-slate-800">ใจดี 💛</span>
                     </div>
                     <div id="peerChatBox" class="flex-1 overflow-y-auto space-y-6 p-2 text-lg pr-4">
                         <div class="bg-yellow-50 text-slate-800 p-5 rounded-2xl rounded-tl-sm max-w-[85%] border-2 border-yellow-300 font-medium">
-                            สวัสดี ต้องการปรึกษาอะไรมั้ย สามารถพูดคุยได้นะ
+                            สวัสดี มีอะไรให้ใจดี ใจดีพร้อมรับฟังนะ
                     <div id="peerChatBox" class="flex-1 overflow-y-auto space-y-4 p-2 text-base sm:text-lg pr-2 sm:pr-4">
                         <div class="bg-amber-50 text-slate-800 p-4 sm:p-5 rounded-[1.5rem] rounded-tl-sm max-w-[85%] border-[3px] border-amber-200 font-bold shadow-sm">
-                            สวัสดี! คุณต้องการให้ฉันช่วยอะไรบ้าง? 💛
+                            สวัสดี! ใจดีพร้อมให้คำปรึกษา คุณมีอะไรอยากให้ใจดีรับฟังไหม💛
                         </div>
                     </div>
                     <div class="flex gap-3 mt-4">
@@ -539,27 +540,27 @@
 
                 <div class="space-y-6">
                     <div>
-                        <label class="block text-xl font-bold text-slate-700 mb-3">1. วันนี้คุณรู้สึกอย่างไร</label>
+                        <label class="block text-xl font-bold text-slate-700 mb-3">1. วันนี้คุณเป็นยังไงบ้าง</label>
                         <input id="q1" type="text" class="w-full px-5 py-4 bg-yellow-50 border-4 border-yellow-200 rounded-2xl text-xl focus:border-yellow-400" placeholder="e.g., A bit anxious">
                 <div class="space-y-5 sm:space-y-6">
                     <div class="bg-sky-50 p-4 sm:p-5 rounded-[1.5rem] border-[3px] border-sky-200">
-                        <label class="block text-lg sm:text-xl font-black text-sky-700 mb-2 bg-white w-fit px-3 py-1 rounded-xl shadow-sm border-2 border-sky-100">1. Feeling today? ☁️</label>
+                        <label class="block text-lg sm:text-xl font-black text-sky-700 mb-2 bg-white w-fit px-3 py-1 rounded-xl shadow-sm border-2 border-sky-100">1. วันนี้คุณเป็นยังไงบ้าง ☁️</label>
                         <input id="q1" type="text" class="w-full px-4 py-3 sm:py-4 bg-white border-[3px] border-sky-200 rounded-[1rem] text-base sm:text-lg font-bold focus:border-sky-400 focus:ring-4 focus:ring-sky-100 outline-none transition-all placeholder-sky-300" placeholder="e.g., A bit anxious">
                     </div>
                     <div>
-                        <label class="block text-xl font-bold text-slate-700 mb-3">2. มีอะไรกังวลอยู่รึเปล่า</label>
+                        <label class="block text-xl font-bold text-slate-700 mb-3">2. มีอะไรกวนใจอยู่รึเปล่า</label>
                         <input id="q2" type="text" class="w-full px-5 py-4 bg-yellow-50 border-4 border-yellow-200 rounded-2xl text-xl focus:border-yellow-400" placeholder="e.g., Work deadlines">
                     <div class="bg-sky-50 p-4 sm:p-5 rounded-[1.5rem] border-[3px] border-sky-200">
-                        <label class="block text-lg sm:text-xl font-black text-sky-700 mb-2 bg-white w-fit px-3 py-1 rounded-xl shadow-sm border-2 border-sky-100">2. มีอะไรกังวลอยู่รึเปล่า? 🤔</label>
+                        <label class="block text-lg sm:text-xl font-black text-sky-700 mb-2 bg-white w-fit px-3 py-1 rounded-xl shadow-sm border-2 border-sky-100">2. มีอะไรกวนใจอยู่รึเปล่า 🤔</label>
                         <input id="q2" type="text" class="w-full px-4 py-3 sm:py-4 bg-white border-[3px] border-sky-200 rounded-[1rem] text-base sm:text-lg font-bold focus:border-sky-400 focus:ring-4 focus:ring-sky-100 outline-none transition-all placeholder-sky-300" placeholder="e.g., Work deadlines">
                     </div>
                     <div class="pt-4 bg-pink-50 p-6 rounded-2xl border-4 border-pink-200">
-                        <label class="block text-xl font-black text-pink-600 mb-4">3. บันทึกในประวัติของคุณ?</label>
+                        <label class="block text-xl font-black text-pink-600 mb-4">3. บันทึกในประวัติของคุณ</label>
                         <div class="flex gap-8">
                             <label class="inline-flex items-center text-xl font-bold text-slate-700 cursor-pointer">
                                 <input type="radio" name="q3" value="Yes" checked class="w-6 h-6 text-pink-500 mr-3"> ใช่
                     <div class="bg-pink-50 p-5 rounded-[1.5rem] border-[3px] border-pink-200 shadow-inner">
-                        <label class="block text-xl sm:text-2xl font-black text-pink-600 mb-4 text-center">3. บันทึกในประวัติ? 💾</label>
+                        <label class="block text-xl sm:text-2xl font-black text-pink-600 mb-4 text-center">3. บันทึกในประวัติ 💾</label>
                         <div class="flex gap-4 sm:gap-6 justify-center">
                             <label class="inline-flex items-center text-xl sm:text-2xl font-black text-slate-700 cursor-pointer bg-white px-5 sm:px-6 py-2 sm:py-3 rounded-2xl border-[3px] border-pink-100 hover:bg-pink-100 transition-colors shadow-sm">
                                 <input type="radio" name="q3" value="Yes" checked class="w-6 h-6 sm:w-7 sm:h-7 text-pink-500 mr-2 accent-pink-500"> ใช่
