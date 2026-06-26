@@ -58,7 +58,7 @@ function handleRegister() {
     for(let id of inputsToCheck) {
         const val = document.getElementById(id).value.trim();
         if(!val) {
-            showCuteAlert("Please fill out every single box so we can get to know you better! 🌸", "🌸");
+            showCuteAlert("โปรดกรอกข้อมูลให้ครบทุกช่อง เพื่อให้เราได้รู้จักคุณดียิ่งขึ้นนะคับ! 🌸", "🌸");
             return; 
         }
     }
@@ -83,7 +83,7 @@ function simulateLogin() {
     const pass = document.getElementById('loginPassword').value.trim();
 
     if(!user || !pass) {
-        showCuteAlert("Oh no! Please fill in both your username and password! ☁️", "☁️");
+        showCuteAlert("อุ้ยย! กรอกทั้งชื่อผู้ใช้และรหัสผ่านของคุณหน่อยน้า ☁️", "☁️");
         return;
     }
 
@@ -131,7 +131,7 @@ function sendVent() {
     setTimeout(() => {
         const aiBubble = document.createElement('div');
         aiBubble.className = "bg-amber-50 text-slate-800 p-3 sm:p-5 rounded-[1.5rem] rounded-tl-sm max-w-[85%] border-[3px] border-amber-300 font-bold text-base sm:text-lg shadow-sm animate-float";
-        aiBubble.innerText = "I hear you clearly. Thank you for sharing that with me. You're doing great. 💛";
+        aiBubble.innerText = "ฉันได้ยินคุณอย่างชัดเจนนะ ขอบคุณที่แบ่งปันสิ่งนี้กับฉัน คุณทำได้ดีมาก เป็นกำลังใจให้นะคับ  💛";
         chat.appendChild(aiBubble);
         chat.scrollTop = chat.scrollHeight;
         
@@ -189,7 +189,7 @@ function sendPeerMsg() {
     setTimeout(() => {
         const peerBubble = document.createElement('div');
         peerBubble.className = "bg-amber-50 text-slate-800 p-3 sm:p-5 rounded-[1.5rem] rounded-tl-sm max-w-[85%] border-[3px] border-amber-300 font-bold text-base sm:text-lg shadow-sm animate-float";
-        peerBubble.innerText = "That sounds like a heavy thing to carry. Would you like to explore how that's making you feel right now? I'm right here with you. ✨";
+        peerBubble.innerText = "นั่นฟังดูเหมือนสิ่งที่จะต้องใช้แรงมาก คุณอยากสำรวจว่าสิ่งนี้ทำให้คุณรู้สึกอย่างไรตอนนี้ไหม? ฉันอยู่ตรงนี้กับคุณนะ  ✨";
         chat.appendChild(peerBubble);
         chat.scrollTop = chat.scrollHeight;
     }, 1500);
@@ -232,7 +232,7 @@ function saveProfile() {
     userProfile.phone = document.getElementById('profPhone').value;
     userProfile.id = document.getElementById('profID').value;
     
-    showCuteAlert('Profile updated successfully! ✨', '🎉');
+    showCuteAlert('โปรไฟล์อัปเดตสำเร็จแล้ว! ✨', '🎉');
     switchView('dashboardView');
 }
 
