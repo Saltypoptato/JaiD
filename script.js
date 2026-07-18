@@ -20,7 +20,7 @@ function switchView(viewId) {
 }
 
 // --- CUTE CUSTOM ALERT SYSTEM ---
-function showCuteAlert(message, icon = '🥺') {
+function showCuteAlert(message, icon = '(ᵕ—ᴗ—)') {
     document.getElementById('cuteAlertMessage').innerText = message;
     document.getElementById('cuteAlertIcon').innerText = icon;
     const overlay = document.getElementById('cuteAlertOverlay');
@@ -58,7 +58,7 @@ function handleRegister() {
     for(let id of inputsToCheck) {
         const val = document.getElementById(id).value.trim();
         if(!val) {
-            showCuteAlert("โปรดกรอกข้อมูลให้ครบทุกช่อง เพื่อให้เราได้รู้จักคุณดียิ่งขึ้นนะคับ! 🌸", "🌸");
+            showCuteAlert("โปรดกรอกข้อมูลให้ครบทุกช่อง เพื่อให้เราได้รู้จักคุณดียิ่งขึ้นนะคับ! ⭑.ᐟ", "♡");
             return; 
         }
     }
@@ -115,6 +115,82 @@ function selectQuickEmoji(emoji, label) {
 }
 
 // AI Vent
+// --- AI VENT: STT (Ears) & TTS (Voice) Integration ---
+
+// 1. Text-to-Speech (TTS) Setup
+function speakText(text) {
+    if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'th-TH'; // Set language to Thai
+        utterance.rate = 1.0;     // Speaking speed
+        utterance.pitch = 1.2;    // Slightly higher pitch for a cute/friendly tone
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+// 2. Speech-to-Text (STT) Setup
+let isRecording = false;
+let recognition = null;
+
+if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'th-TH'; // Set language to Thai
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        const inputField = document.getElementById('ventInput');
+        inputField.value = (inputField.value + " " + transcript).trim();
+    };
+
+    recognition.onerror = (event) => {
+        console.error("Speech recognition error", event.error);
+        stopSTT();
+    };
+
+    recognition.onend = () => {
+        stopSTT();
+    };
+}
+
+function toggleSTT() {
+    if (!recognition) {
+        showCuteAlert("เบราว์เซอร์ของคุณไม่รองรับการพิมพ์ด้วยเสียงนะคับ (,,>﹏<,,)", "🎙️");
+        return;
+    }
+
+    if (isRecording) {
+        recognition.stop();
+    } else {
+        recognition.start();
+        isRecording = true;
+        
+        // Visual feedback for recording state
+        const micBtn = document.getElementById('micBtn');
+        micBtn.classList.replace('bg-sky-400', 'bg-red-400');
+        micBtn.classList.replace('hover:bg-sky-500', 'hover:bg-red-500');
+        micBtn.classList.replace('border-sky-600', 'border-red-600');
+        micBtn.classList.add('animate-pulse');
+        document.getElementById('ventInput').placeholder = "ᯓ★ กำลังฟังอยู่คับ...";
+    }
+}
+
+function stopSTT() {
+    isRecording = false;
+    const micBtn = document.getElementById('micBtn');
+    if(micBtn) {
+        // Reset visual feedback
+        micBtn.classList.replace('bg-red-400', 'bg-sky-400');
+        micBtn.classList.replace('hover:bg-red-500', 'hover:bg-sky-500');
+        micBtn.classList.replace('border-red-600', 'border-sky-600');
+        micBtn.classList.remove('animate-pulse');
+        document.getElementById('ventInput').placeholder = "..ระบายความรู้สึกของคุณ ˚⟡˖";
+    }
+}
+
+// 3. Updated sendVent Function (Incorporating TTS)
 function sendVent() {
     const val = document.getElementById('ventInput').value;
     if(!val.trim()) return;
@@ -129,11 +205,17 @@ function sendVent() {
     chat.scrollTop = chat.scrollHeight;
 
     setTimeout(() => {
+        const aiMessage = "ฉันได้ยินคุณอย่างชัดเจนนะ ขอบคุณที่แบ่งปันสิ่งนี้กับฉัน คุณทำได้ดีมาก เป็นกำลังใจให้นะคับ";
+        const spokenMessage = "ฉันได้ยินคุณอย่างชัดเจนนะ ขอบคุณที่แบ่งปันสิ่งนี้กับฉัน คุณทำได้ดีมาก เป็นกำลังใจให้นะคับ";
+        
         const aiBubble = document.createElement('div');
         aiBubble.className = "bg-amber-50 text-slate-800 p-3 sm:p-5 rounded-[1.5rem] rounded-tl-sm max-w-[85%] border-[3px] border-amber-300 font-bold text-base sm:text-lg shadow-sm animate-float";
-        aiBubble.innerText = "ฉันได้ยินคุณอย่างชัดเจนนะ ขอบคุณที่แบ่งปันสิ่งนี้กับฉัน คุณทำได้ดีมาก เป็นกำลังใจให้นะคับ  💛";
+        aiBubble.innerText = aiMessage;
         chat.appendChild(aiBubble);
         chat.scrollTop = chat.scrollHeight;
+        
+        // Trigger the AI's Voice
+        speakText(spokenMessage);
         
         document.getElementById('aiFollowUp').classList.remove('hidden');
         document.getElementById('aiFollowUp').classList.add('flex');
