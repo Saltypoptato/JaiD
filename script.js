@@ -288,6 +288,66 @@ function processTrackerResults() {
     switchView('dashboardView');
 }
 
+function searchHealth() {
+    const query = document.getElementById('healthSearchInput').value.toLowerCase().trim();
+    const resultsContainer = document.getElementById('healthResults');
+    
+    // Clear previous results
+    resultsContainer.innerHTML = '';
+
+    // ถ้าไม่มีคำค้นหา ให้แสดงหน้าว่างน่ารักๆ
+    if (query === "") {
+        resultsContainer.innerHTML = `
+            <div class="text-center mt-8 text-sky-400/70 font-medium">
+                <i data-lucide="heart-pulse" class="w-16 h-16 mx-auto mb-3 opacity-50 text-pink-400"></i>
+                <p class="text-lg font-bold text-sky-500">พิมพ์อาการที่คุณรู้สึกเบื้องต้นได้เลยคับ (๑ᵔ⤙ᵔ๑)</p>
+            </div>
+        `;
+        lucide.createIcons();
+        return;
+    }
+
+    // Filter database
+    const matchedResults = healthDb.filter(item => 
+        item.keywords.some(keyword => keyword.includes(query) || query.includes(keyword))
+    );
+
+    // ถ้าไม่พบอาการ
+    if (matchedResults.length === 0) {
+        resultsContainer.innerHTML = `
+            <div class="bg-white p-6 rounded-[1.5rem] border-[3px] border-sky-200 text-center text-slate-500 font-bold shadow-sm">
+                ไม่พบข้อมูลสำหรับอาการนี้คับ ลองเปลี่ยนคำค้นหาดูนะ (๑•́ ₃ •̀๑)
+            </div>
+        `;
+        return;
+    }
+
+    // สร้างการ์ดผลลัพธ์ในธีมสีชมพูน่ารักๆ
+    matchedResults.forEach(result => {
+        let listItems = result.advice.map(adv => `<li class="mb-2 flex gap-2"><span class="text-pink-400">❤︎</span><span>${adv}</span></li>`).join('');
+        
+        const card = document.createElement('div');
+        card.className = "bg-pink-50 p-5 rounded-[1.5rem] border-[3px] border-pink-200 shadow-inner mb-4";
+        card.innerHTML = `
+            <h3 class="text-xl sm:text-2xl font-black text-pink-600 mb-4 text-center border-b-[3px] border-pink-100 pb-2">
+                ${result.title}
+            </h3>
+            
+            <div class="bg-white px-5 sm:px-6 py-4 rounded-[1.2rem] border-[3px] border-pink-100 shadow-sm mb-4">
+                <ul class="text-slate-700 font-bold text-sm sm:text-base">
+                    ${listItems}
+                </ul>
+            </div>
+            
+            <div class="bg-white px-4 py-3 rounded-[1.2rem] border-[3px] border-pink-100 shadow-sm flex gap-3 items-start">
+                <span class="text-pink-500 text-lg mt-0.5">⚠️</span>
+                <p class="text-pink-500 text-sm sm:text-base font-black">หมายเหตุ: ${result.warning}</p>
+            </div>
+        `;
+        resultsContainer.appendChild(card);
+    });
+}
+
 // Logs
 function appendLogToDashboard(message) {
     const container = document.getElementById('historicalSummary');

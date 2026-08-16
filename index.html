@@ -118,7 +118,8 @@
 
             <div
                 class="bg-white p-5 sm:p-8 rounded-[2rem] sm:rounded-[3rem] shadow-2xl shadow-pink-200 border-[4px] sm:border-[6px] border-pink-100 space-y-4">
-                <h3 class="text-3xl sm:text-4xl font-black text-slate-800 text-center mb-1 animate-float">۶۟ৎ ลงทะเบียน ۶۟ৎ
+                <h3 class="text-3xl sm:text-4xl font-black text-slate-800 text-center mb-1 animate-float">۶۟ৎ ลงทะเบียน
+                    ۶۟ৎ
                 </h3>
                 <p class="text-center text-sm sm:text-lg text-slate-500 font-bold mb-4">มาสร้างพื้นที่ปลอดภัยของคุณกัน
                 </p>
@@ -280,16 +281,29 @@
                             แวะมาเติมพลังใจกันวันละนิด</p>
                     </div>
                 </button>
-            </div>
 
-            <div id="historicalSummary"
-                class="bg-white border-[4px] sm:border-[6px] border-pink-200 p-5 sm:p-8 rounded-[2rem] sm:rounded-[3rem] shadow-xl hidden">
-                <h4
-                    class="font-black text-xl sm:text-2xl flex items-center gap-2 text-slate-800 mb-4 sm:mb-6 bg-pink-50 p-3 sm:p-4 rounded-[1.5rem] w-fit border-[3px] border-pink-100">
-                    <i data-lucide="activity" class="w-6 h-6 sm:w-8 sm:h-8 text-pink-500"></i> กิจกรรม ᰔ
-                </h4>
-                <div id="historyTarget" class="space-y-3 text-slate-600 text-sm sm:text-base"></div>
+                <!-- Health Button -->
+                <button onclick="switchView('healthView')"
+                    class="p-4 sm:p-6 bg-amber-100 rounded-[1.5rem] sm:rounded-[2.5rem] shadow-lg border-[4px] sm:border-[6px] border-amber-300 hover:border-amber-400 hover:scale-105 hover:rotate-3 transition-all text-left flex flex-col justify-between h-44 sm:h-56 border-b-[6px] sm:border-b-[8px]">
+                    <div class="bg-amber-200 text-amber-800 p-2 sm:p-3 rounded-[1rem] w-fit shadow-inner">
+                        <i data-lucide="stethoscope" class="w-8 h-8 sm:w-10 sm:h-10"></i>
+                    </div>
+                    <div class="text-left">
+                        <h2 class="font-black text-amber-900 text-xl sm:text-2xl mb-1">ค้นหาอาการป่วย</h2>
+                        <p class="text-xs sm:text-sm text-amber-700 font-bold bg-amber-200/50 px-2 py-1 rounded-md w-fit">คำแนะนำสุขภาพเบื้องต้น</p>
+                    </div>
+                </button>
             </div>
+        </div>
+
+        <div id="historicalSummary"
+            class="bg-white border-[4px] sm:border-[6px] border-pink-200 p-5 sm:p-8 rounded-[2rem] sm:rounded-[3rem] shadow-xl hidden">
+            <h4
+                class="font-black text-xl sm:text-2xl flex items-center gap-2 text-slate-800 mb-4 sm:mb-6 bg-pink-50 p-3 sm:p-4 rounded-[1.5rem] w-fit border-[3px] border-pink-100">
+                <i data-lucide="activity" class="w-6 h-6 sm:w-8 sm:h-8 text-pink-500"></i> กิจกรรม ᰔ
+            </h4>
+            <div id="historyTarget" class="space-y-3 text-slate-600 text-sm sm:text-base"></div>
+        </div>
         </div>
 
         <div id="moodEmojiView" class="view space-y-4 sm:space-y-6 hidden">
@@ -349,13 +363,13 @@
                     <div class="flex gap-2 sm:gap-4 justify-center">
                         <button onclick="aiResponseReaction('Yes')"
                             class="btn-3d bg-amber-400 text-white px-5 sm:px-8 py-2 sm:py-3 rounded-[1rem] hover:bg-amber-500 shadow-md border-b-[4px] border-amber-600">ช่วย!
-                            </button>
+                        </button>
                         <button onclick="aiResponseReaction('No')"
                             class="btn-3d bg-slate-300 text-slate-700 px-5 sm:px-8 py-2 sm:py-3 rounded-[1rem] hover:bg-slate-400 shadow-md border-b-[4px] border-slate-500">ไม่ช่วย</button>
                     </div>
                 </div>
 
-                
+
                 <div class="flex gap-2 mt-2">
                     <!-- New Microphone Button for STT -->
                     <button id="micBtn" onclick="toggleSTT()"
@@ -405,7 +419,7 @@
                         class="flex-1 overflow-y-auto space-y-4 p-2 text-base sm:text-lg pr-2 sm:pr-4">
                         <div
                             class="bg-amber-50 text-slate-800 p-4 sm:p-5 rounded-[1.5rem] rounded-tl-sm max-w-[85%] border-[3px] border-amber-200 font-bold shadow-sm">
-                            สวัสดี! ใจดีพร้อมให้คำปรึกษา คุณมีอะไรอยากให้ใจดีรับฟังไหม ⚝
+                            หวัดดี! ใจดีพร้อมให้คำปรึกษา เองมีอะไรอยากให้ใจดีรับฟังไหมเอ๋ย ⚝
                         </div>
                     </div>
                     <div class="flex gap-2 mt-2">
@@ -492,6 +506,48 @@
             </div>
         </div>
 
+       <!-- ================= HEALTH SEARCH PAGE ================= -->
+        <div id="healthView" class="view space-y-4 sm:space-y-6 hidden h-full">
+            <!-- Back Button -->
+            <button onclick="switchView('dashboardView')"
+                class="text-xl sm:text-2xl font-black text-sky-600 flex items-center gap-2 mb-2 hover:underline hover:-translate-x-2 transition-transform">
+                <i data-lucide="arrow-left" class="w-6 h-6 sm:w-8 sm:h-8"></i> หน้าหลัก
+            </button>
+
+            <!-- Main Card Container -->
+            <div class="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[3rem] shadow-2xl shadow-sky-200 border-[4px] sm:border-[6px] border-sky-100 space-y-6 flex-1 flex flex-col h-full overflow-hidden">
+                
+                <h3 class="font-black text-3xl sm:text-4xl text-slate-800 border-b-[3px] sm:border-b-[4px] border-sky-100 pb-3">
+                    ค้นหาอาการป่วย ✮⋆˙
+                </h3>
+
+                <!-- Search Input Container -->
+                <div class="bg-sky-50 p-4 sm:p-5 rounded-[1.5rem] border-[3px] border-sky-200 shrink-0">
+                    <label class="block text-lg sm:text-xl font-black text-sky-700 mb-2 bg-white w-fit px-3 py-1 rounded-xl shadow-sm border-2 border-sky-100">
+                        ❤︎ พิมพ์อาการของคุณที่นี่
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i data-lucide="search" class="w-6 h-6 text-sky-400"></i>
+                        </div>
+                        <input id="healthSearchInput" type="text" oninput="searchHealth()" 
+                            class="w-full pl-12 pr-4 py-3 sm:py-4 bg-white border-[3px] border-sky-200 rounded-[1rem] text-base sm:text-lg font-bold focus:border-sky-400 focus:ring-4 focus:ring-sky-100 outline-none transition-all placeholder-sky-300" 
+                            placeholder="e.g., เป็นไข้, เจ็บคอ, ปวดหัว...">
+                    </div>
+                </div>
+
+                <!-- Search Results (Scrollable) -->
+                <div id="healthResults" class="flex-1 overflow-y-auto space-y-4 pb-4 pr-2">
+                    <!-- Default State -->
+                    <div id="healthDefaultState" class="text-center mt-8 text-sky-400/70 font-medium">
+                        <i data-lucide="heart-pulse" class="w-16 h-16 mx-auto mb-3 opacity-50 text-pink-400"></i>
+                        <p class="text-lg font-bold text-sky-500">พิมพ์อาการที่คุณรู้สึกเบื้องต้นได้เลยคับ (๑ᵔ⤙ᵔ๑)</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <div id="profileView" class="view space-y-4 sm:space-y-6 hidden">
             <button onclick="switchView('dashboardView')"
                 class="text-xl sm:text-2xl font-black text-slate-600 flex items-center gap-2 mb-2 hover:underline hover:-translate-x-2 transition-transform">
@@ -501,7 +557,8 @@
                 class="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[3rem] shadow-2xl shadow-pink-200 border-[4px] sm:border-[6px] border-pink-100 space-y-5">
                 <h3
                     class="font-black text-3xl sm:text-4xl text-slate-800 border-b-[3px] sm:border-b-[4px] border-pink-100 pb-3 flex items-center gap-2">
-                    <i data-lucide="settings" class="w-8 h-8 sm:w-10 sm:h-10 text-pink-500"></i> ตั้งค่า ⋆˙⟡</h3>
+                    <i data-lucide="settings" class="w-8 h-8 sm:w-10 sm:h-10 text-pink-500"></i> ตั้งค่า ⋆˙⟡
+                </h3>
 
                 <div class="max-h-[50vh] overflow-y-auto space-y-5 pr-2 sm:pr-4 pb-2">
                     <div class="bg-slate-50 p-4 sm:p-5 rounded-[1.5rem] border-[3px] border-slate-200">
